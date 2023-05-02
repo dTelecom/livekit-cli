@@ -144,7 +144,7 @@ func createToken(c *cli.Context) error {
 
 	token, err := at.ToJWT()
 	if err != nil {
-		return err
+		return fmt.Errorf("error to jwt: %w", err)
 	}
 
 	fmt.Println("token grants")
