@@ -75,6 +75,8 @@ github.com/dTelecom/p2p-realtime-database v1.0.4 h1:ZBifu26tzW517C9riYAsuv3uJAB4
 github.com/dTelecom/p2p-realtime-database v1.0.4/go.mod h1:nnWHXzze4dqAF/KcLwGzDQtoiqip1XqxPYkIvWAtx7c=
 github.com/dTelecom/protocol v1.0.5 h1:GFtKajaRyO0aCz7XuqC5du+/9h1BTuKKfDCoXNyO1ow=
 github.com/dTelecom/protocol v1.0.5/go.mod h1:0RHLm7rpjqZRyW61iiiZ2nVFGXVvloWrWJ88y+e/+24=
+github.com/dTelecom/protocol v1.0.11 h1:74Gt9jPc7guYTpiu3qFzW5+UtFHseFLdsdu9eDK2OFU=
+github.com/dTelecom/protocol v1.0.11/go.mod h1:0RHLm7rpjqZRyW61iiiZ2nVFGXVvloWrWJ88y+e/+24=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

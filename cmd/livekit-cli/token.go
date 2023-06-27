@@ -69,6 +69,10 @@ var (
 					Name:  "grant",
 					Usage: "additional VideoGrant fields. It'll be merged with other arguments (JSON formatted)",
 				},
+				&cli.StringFlag{
+					Name:  "webhook-url",
+					Usage: "webhook-url for notifier",
+				},
 				projectFlag,
 			},
 		},
@@ -81,6 +85,7 @@ func createToken(c *cli.Context) error {
 	room := c.String("room")
 	metadata := c.String("metadata")
 	validFor := c.String("valid-for")
+	webHookURL := c.String("webhook-url")
 
 	grant := &auth.VideoGrant{
 		Room: room,
@@ -129,6 +134,10 @@ func createToken(c *cli.Context) error {
 	if metadata != "" {
 		at.SetMetadata(metadata)
 	}
+	if webHookURL != "" {
+		at.SetWebHookURL(webHookURL)
+	}
+
 	if name == "" {
 		name = p
 	}

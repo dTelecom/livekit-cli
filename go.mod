@@ -2,7 +2,7 @@ module github.com/livekit/livekit-cli
 
 go 1.18
 
-replace github.com/livekit/protocol v1.5.4 => github.com/dTelecom/protocol v1.0.5
+replace github.com/livekit/protocol v1.5.4 => github.com/dTelecom/protocol v1.0.11
 
 require (
 	github.com/ggwhite/go-masker v1.0.9
