@@ -17,47 +17,47 @@ const (
 )
 
 type VideoSpec struct {
-	codec  string
-	prefix string
-	height int
-	width  int
-	kbps   int
-	fps    int
+	Codec  string
+	Prefix string
+	Height int
+	Width  int
+	Kbps   int
+	Fps    int
 }
 
 func (v *VideoSpec) Name() string {
 	ext := "h264"
-	if v.codec == vp8Codec {
+	if v.Codec == vp8Codec {
 		ext = "ivf"
 	}
-	size := strconv.Itoa(v.height)
-	if v.height > v.width {
-		size = fmt.Sprintf("p%d", v.width)
+	size := strconv.Itoa(v.Height)
+	if v.Height > v.Width {
+		size = fmt.Sprintf("p%d", v.Width)
 	}
-	return fmt.Sprintf("resources/%s_%s_%d.%s", v.prefix, size, v.kbps, ext)
+	return fmt.Sprintf("resources/%s_%s_%d.%s", v.Prefix, size, v.Kbps, ext)
 }
 
 func (v *VideoSpec) ToVideoLayer(quality livekit.VideoQuality) *livekit.VideoLayer {
 	return &livekit.VideoLayer{
 		Quality: quality,
-		Height:  uint32(v.height),
-		Width:   uint32(v.width),
+		Height:  uint32(v.Height),
+		Width:   uint32(v.Width),
 		Bitrate: v.bitrate(),
 	}
 }
 
 func (v *VideoSpec) bitrate() uint32 {
-	return uint32(v.kbps * 1000)
+	return uint32(v.Kbps * 1000)
 }
 
 func circlesSpec(width, kbps, fps int) *VideoSpec {
 	return &VideoSpec{
-		codec:  h264Codec,
-		prefix: "circles",
-		height: width * 4 / 3,
-		width:  width,
-		kbps:   kbps,
-		fps:    fps,
+		Codec:  h264Codec,
+		Prefix: "circles",
+		Height: width * 4 / 3,
+		Width:  width,
+		Kbps:   kbps,
+		Fps:    fps,
 	}
 }
 
@@ -69,12 +69,12 @@ func createSpecs(prefix string, codec string, bitrates ...int) []*VideoSpec {
 	for i, b := range bitrates {
 		dimMultiple := int(math.Pow(2, float64(i)))
 		specs = append(specs, &VideoSpec{
-			prefix: prefix,
-			codec:  codec,
-			kbps:   b,
-			fps:    videoFps[i],
-			height: 180 * dimMultiple,
-			width:  180 * dimMultiple * 16 / 9,
+			Prefix: prefix,
+			Codec:  codec,
+			Kbps:   b,
+			Fps:    videoFps[i],
+			Height: 180 * dimMultiple,
+			Width:  180 * dimMultiple * 16 / 9,
 		})
 	}
 	return specs
@@ -117,7 +117,7 @@ func init() {
 func randomVideoSpecsForCodec(videoCodec string) []*VideoSpec {
 	filtered := make([][]*VideoSpec, 0)
 	for _, specs := range videoSpecs {
-		if videoCodec == "" || specs[0].codec == videoCodec {
+		if videoCodec == "" || specs[0].Codec == videoCodec {
 			filtered = append(filtered, specs)
 		}
 	}
@@ -147,13 +147,13 @@ func CreateVideoLoopers(resolution string, codecFilter string, simulcast bool) (
 			return nil, err
 		}
 		defer f.Close()
-		if spec.codec == h264Codec {
+		if spec.Codec == h264Codec {
 			looper, err := NewH264VideoLooper(f, spec)
 			if err != nil {
 				return nil, err
 			}
 			loopers = append(loopers, looper)
-		} else if spec.codec == vp8Codec {
+		} else if spec.Codec == vp8Codec {
 			looper, err := NewVP8VideoLooper(f, spec)
 			if err != nil {
 				return nil, err

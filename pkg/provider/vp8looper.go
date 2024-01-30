@@ -26,7 +26,7 @@ type VP8VideoLooper struct {
 func NewVP8VideoLooper(input io.Reader, spec *VideoSpec) (*VP8VideoLooper, error) {
 	l := &VP8VideoLooper{
 		spec:          spec,
-		frameDuration: time.Second / time.Duration(spec.fps),
+		frameDuration: time.Second / time.Duration(spec.Fps),
 	}
 
 	buf := bytes.NewBuffer(nil)
