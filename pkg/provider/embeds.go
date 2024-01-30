@@ -16,7 +16,7 @@ const (
 	vp8Codec  = "vp8"
 )
 
-type videoSpec struct {
+type VideoSpec struct {
 	codec  string
 	prefix string
 	height int
@@ -25,7 +25,7 @@ type videoSpec struct {
 	fps    int
 }
 
-func (v *videoSpec) Name() string {
+func (v *VideoSpec) Name() string {
 	ext := "h264"
 	if v.codec == vp8Codec {
 		ext = "ivf"
@@ -37,7 +37,7 @@ func (v *videoSpec) Name() string {
 	return fmt.Sprintf("resources/%s_%s_%d.%s", v.prefix, size, v.kbps, ext)
 }
 
-func (v *videoSpec) ToVideoLayer(quality livekit.VideoQuality) *livekit.VideoLayer {
+func (v *VideoSpec) ToVideoLayer(quality livekit.VideoQuality) *livekit.VideoLayer {
 	return &livekit.VideoLayer{
 		Quality: quality,
 		Height:  uint32(v.height),
@@ -46,12 +46,12 @@ func (v *videoSpec) ToVideoLayer(quality livekit.VideoQuality) *livekit.VideoLay
 	}
 }
 
-func (v *videoSpec) bitrate() uint32 {
+func (v *VideoSpec) bitrate() uint32 {
 	return uint32(v.kbps * 1000)
 }
 
-func circlesSpec(width, kbps, fps int) *videoSpec {
-	return &videoSpec{
+func circlesSpec(width, kbps, fps int) *VideoSpec {
+	return &VideoSpec{
 		codec:  h264Codec,
 		prefix: "circles",
 		height: width * 4 / 3,
@@ -61,14 +61,14 @@ func circlesSpec(width, kbps, fps int) *videoSpec {
 	}
 }
 
-func createSpecs(prefix string, codec string, bitrates ...int) []*videoSpec {
-	var specs []*videoSpec
+func createSpecs(prefix string, codec string, bitrates ...int) []*VideoSpec {
+	var specs []*VideoSpec
 	videoFps := []int{
 		15, 20, 30,
 	}
 	for i, b := range bitrates {
 		dimMultiple := int(math.Pow(2, float64(i)))
-		specs = append(specs, &videoSpec{
+		specs = append(specs, &VideoSpec{
 			prefix: prefix,
 			codec:  codec,
 			kbps:   b,
@@ -84,14 +84,14 @@ var (
 	//go:embed resources
 	res embed.FS
 
-	videoSpecs [][]*videoSpec
+	videoSpecs [][]*VideoSpec
 	videoIndex atomic.Int64
 	audioNames []string
 	audioIndex atomic.Int64
 )
 
 func init() {
-	videoSpecs = [][]*videoSpec{
+	videoSpecs = [][]*VideoSpec{
 		createSpecs("butterfly", h264Codec, 150, 400, 2000),
 		createSpecs("cartoon", h264Codec, 120, 400, 1500),
 		createSpecs("crescent", vp8Codec, 150, 600, 2000),
@@ -114,8 +114,8 @@ func init() {
 	}
 }
 
-func randomVideoSpecsForCodec(videoCodec string) []*videoSpec {
-	filtered := make([][]*videoSpec, 0)
+func randomVideoSpecsForCodec(videoCodec string) []*VideoSpec {
+	filtered := make([][]*VideoSpec, 0)
 	for _, specs := range videoSpecs {
 		if videoCodec == "" || specs[0].codec == videoCodec {
 			filtered = append(filtered, specs)

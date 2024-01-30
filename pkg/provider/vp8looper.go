@@ -17,13 +17,13 @@ type VP8VideoLooper struct {
 	lksdk.BaseSampleProvider
 	buffer        []byte
 	frameDuration time.Duration
-	spec          *videoSpec
+	spec          *VideoSpec
 	reader        *ivfreader.IVFReader
 	ivfTimebase   float64
 	lastTimestamp uint64
 }
 
-func NewVP8VideoLooper(input io.Reader, spec *videoSpec) (*VP8VideoLooper, error) {
+func NewVP8VideoLooper(input io.Reader, spec *VideoSpec) (*VP8VideoLooper, error) {
 	l := &VP8VideoLooper{
 		spec:          spec,
 		frameDuration: time.Second / time.Duration(spec.fps),
