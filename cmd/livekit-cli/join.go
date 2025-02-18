@@ -14,10 +14,10 @@ import (
 	"github.com/pion/webrtc/v3"
 	"github.com/urfave/cli/v2"
 
+	lksdk "github.com/dtelecom/server-sdk-go"
 	provider2 "github.com/livekit/livekit-cli/pkg/provider"
 	"github.com/livekit/protocol/livekit"
 	"github.com/livekit/protocol/logger"
-	lksdk "github.com/livekit/server-sdk-go"
 )
 
 var (

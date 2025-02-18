@@ -10,10 +10,10 @@ import (
 	"github.com/pion/webrtc/v3"
 	"go.uber.org/atomic"
 
+	lksdk "github.com/dtelecom/server-sdk-go"
+	"github.com/dtelecom/server-sdk-go/pkg/samplebuilder"
 	provider2 "github.com/livekit/livekit-cli/pkg/provider"
 	"github.com/livekit/protocol/livekit"
-	lksdk "github.com/livekit/server-sdk-go"
-	"github.com/livekit/server-sdk-go/pkg/samplebuilder"
 )
 
 type LoadTester struct {
