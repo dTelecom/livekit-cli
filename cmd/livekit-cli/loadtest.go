@@ -10,9 +10,9 @@ import (
 	"github.com/go-logr/logr"
 	"github.com/urfave/cli/v2"
 
+	lksdk "github.com/dtelecom/server-sdk-go"
 	"github.com/livekit/livekit-cli/pkg/loadtester"
 	"github.com/livekit/protocol/logger"
-	lksdk "github.com/livekit/server-sdk-go"
 )
 
 var LoadTestCommands = []*cli.Command{

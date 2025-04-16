@@ -9,7 +9,7 @@ import (
 	"github.com/pion/webrtc/v3/pkg/media"
 	"github.com/pion/webrtc/v3/pkg/media/oggreader"
 
-	lksdk "github.com/livekit/server-sdk-go"
+	lksdk "github.com/dtelecom/server-sdk-go"
 )
 
 const (
