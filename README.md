@@ -1,5 +1,9 @@
 # LiveKit CLI
 
+**Deprecated for dTelecom Cloud.** For new integrations, use the JS or Go server SDK to issue participant tokens and administer rooms. Give each participant the token and node URL returned by Cloud. [JS server SDK](https://github.com/dTelecom/server-sdk-js) · [Go server SDK](https://github.com/dTelecom/server-sdk-go) · [Room administration](https://docs.dtelecom.org/rooms/manage-rooms/)
+
+To join a room and exchange media, follow the dTelecom connection guide. The historical installation commands below install the upstream LiveKit CLI. [Join a room](https://docs.dtelecom.org/rooms/connect/)
+
 This package includes command line utilities that interacts with LiveKit. It allows you to:
 
 -   Create access tokens
